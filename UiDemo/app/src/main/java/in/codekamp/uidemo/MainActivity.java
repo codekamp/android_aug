@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firstField = (EditText) findViewById(R.id.first_field);
+        firstField = (EditText) this.findViewById(R.id.first_field);
         secondField = (EditText) findViewById(R.id.second_field);
         resultField = (TextView) findViewById(R.id.result_view);
 
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addNumbers(View v) {
+        TextView firstNumberField = (EditText) findViewById(R.id.first_field);
         Log.d("codekamp", "Button clicked");
         Log.d("codekamp", "First number is " + firstField.getText());
         Log.d("codekamp", "Second number is " + secondField.getText());
