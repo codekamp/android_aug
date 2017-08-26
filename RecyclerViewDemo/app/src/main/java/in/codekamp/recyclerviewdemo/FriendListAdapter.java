@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 
 public class FriendListAdapter extends RecyclerView.Adapter<FriendViewHolder> {
 
+    public int kisKaTable = 0;
+    public int kahanTak = 0;
+
     private static String[] DUMMY_NAME = new String[50];
     private static String[] DUMMY_CITY = new String[50];
 
@@ -52,6 +55,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendViewHolder> {
 
     @Override
     public int getItemCount() {
-        return DUMMY_NAME.length;
+
+        return kahanTak;
     }
 }

@@ -3,13 +3,12 @@ package in.codekamp.recyclerviewdemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    FriendListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
         rv.setLayoutManager(new GridLayoutManager(this, 2));
 
-        FriendListAdapter adapter = new FriendListAdapter();
+        adapter = new FriendListAdapter();
         rv.setAdapter(adapter);
+    }
+
+    public void onSubmit(View view) {
+        adapter.notifyDataSetChanged();
     }
 }
