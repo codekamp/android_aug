@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements NumberInput.TextListner {
 
@@ -23,6 +24,16 @@ public class MainActivity extends AppCompatActivity implements NumberInput.TextL
             transaction.commit();
         }
 
+    }
+
+    public void onClick(View view) {
+        NumberInput f2 = NumberInput.createInstace("Hello", 10);
+
+        FragmentManager fm = this.getSupportFragmentManager();
+
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.container_1, f2);
+        transaction.commit();
     }
 
     @Override
