@@ -23,7 +23,7 @@ public class FetchStories extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
 
         try {
-            URL url = new URL("https://startupbriefs.today/stories");
+            URL url = new URL("https://startupbriefs.today/stories?offset=20");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -42,7 +42,8 @@ public class FetchStories extends AsyncTask<Void, Void, Void> {
             StoryResponse res = g.fromJson(data, StoryResponse.class);
 
             Log.d("codekamp", "" + res.count);
-            Log.d("codekamp", "title of 3rd story: " + res.stories.get(2).title);
+            Log.d("codekamp", "total stories: " + res.stories.size());
+            Log.d("codekamp", "title of 3rd story: " + res.stories.get(1).title);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
