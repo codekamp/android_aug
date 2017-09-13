@@ -18,7 +18,14 @@
 
     <Button
         android:onClick="connect"
-        android:text="connect my account"
+        android:text="add todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:onClick="readData"
+        android:text="read data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
