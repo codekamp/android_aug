@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface MailchimpService {
 
     @GET("lists")
-    Call<AllListsResponse> getAllLists(@Header("Authorization") String auth);
+    Call<AllListsResponse> getAllLists();
 
 
     // GET request on baseURl/lists?count=<a>&offset=<b>

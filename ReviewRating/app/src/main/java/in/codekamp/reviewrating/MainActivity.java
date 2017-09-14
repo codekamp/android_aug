@@ -22,10 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //temporary jugaad, later we will take input from user
-    public static final String API_KEY = "YOUR_KEY_HERE";
+    public static final String API_KEY = "YOUR_API_KEY_HERE";
 
-
-    public static final String MAILCHIMP_BASE_URL = "https://us11.api.mailchimp.com/3.0/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +31,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        MailchimpServiceBuilder.build().getAllLists("bearer " + API_KEY).enqueue(new Callback<AllListsResponse>() {
+        MailchimpServiceBuilder.build().getAllLists().enqueue(new Callback<AllListsResponse>() {
             @Override
             public void onResponse(Call<AllListsResponse> call, Response<AllListsResponse> response) {
+                Log.d("codekamp", "onResponse called");
                 Log.d("codekamp", response.body().lists.get(2).title);
             }
 
             @Override
             public void onFailure(Call<AllListsResponse> call, Throwable t) {
+                Log.d("codekamp", "onFailure called");
             }
         });
 

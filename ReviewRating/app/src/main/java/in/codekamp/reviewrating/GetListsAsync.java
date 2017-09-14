@@ -18,7 +18,7 @@ public class GetListsAsync extends AsyncTask<Void, Void, Void> {
 
         try {
             AllListsResponse r1 = MailchimpServiceBuilder.build()
-                    .getAllLists("bearer " + API_KEY).execute().body();
+                    .getAllLists().execute().body();
 
             Log.d("codekamp", r1.lists.get(2).title);
         } catch (IOException e) {
