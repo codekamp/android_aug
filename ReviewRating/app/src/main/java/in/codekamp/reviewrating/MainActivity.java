@@ -6,6 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -45,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(AllListsResponse response) {
                 Log.d("codekamp", "onSuccess called");
                 Log.d("codekamp", response.lists.get(0).title);
+
+                EventBus.getDefault().post(new LoginEvent("Prashant Chaudhary"));
+
+                //show success popup
+                MainActivity.this.finish();
             }
 
             @Override

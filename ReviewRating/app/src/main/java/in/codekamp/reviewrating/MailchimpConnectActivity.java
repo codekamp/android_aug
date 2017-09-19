@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 public class MailchimpConnectActivity extends AppCompatActivity {
 
     EditText apiKeyField;
@@ -22,6 +25,8 @@ public class MailchimpConnectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mailchimp_connect);
 
         apiKeyField = (EditText) findViewById(R.id.api_key_field);
+
+        EventBus.getDefault().register(this);
     }
 
     public void connect(View view) {
@@ -58,5 +63,15 @@ public class MailchimpConnectActivity extends AppCompatActivity {
 
             Log.d("codekamp", "id: " + id + ", title: " + title + ", completed: " + completed);
         }
+    }
+
+    @Subscribe
+    public void onUserLogin(LoginEvent e) {
+
+
+    }
+
+    @Subscribe void onNewMessageArrival(NewMessageEvent e) {
+
     }
 }
