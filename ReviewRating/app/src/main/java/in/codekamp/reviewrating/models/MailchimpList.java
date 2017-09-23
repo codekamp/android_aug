@@ -1,4 +1,4 @@
-package in.codekamp.reviewrating;
+package in.codekamp.reviewrating.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

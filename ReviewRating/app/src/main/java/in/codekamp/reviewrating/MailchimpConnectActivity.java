@@ -1,10 +1,7 @@
 package in.codekamp.reviewrating;
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +11,8 @@ import android.widget.EditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import in.codekamp.reviewrating.services.DatabaseHelper;
 
 public class MailchimpConnectActivity extends AppCompatActivity {
 
@@ -65,13 +64,20 @@ public class MailchimpConnectActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
+    }
+
     @Subscribe
-    public void onUserLogin(LoginEvent e) {
+    public void updateCart(LoginEvent e) {
 
 
     }
 
-    @Subscribe void onNewMessageArrival(NewMessageEvent e) {
+    @Subscribe void updateConversation(NewMessageEvent e) {
 
     }
 }

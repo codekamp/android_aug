@@ -24,7 +24,7 @@ public class MyApplication extends Application {
 
         context = this;
 
-        setupPicassoConfig();
+//        setupPicassoConfig();
     }
 
     public static Context getAppContext() {

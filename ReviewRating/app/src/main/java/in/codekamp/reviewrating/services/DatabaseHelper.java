@@ -1,8 +1,10 @@
-package in.codekamp.reviewrating;
+package in.codekamp.reviewrating.services;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import in.codekamp.reviewrating.MyApplication;
 
 /**
  * Created by cerebro on 09/09/17.
