@@ -1,8 +1,13 @@
 package in.codekamp.reviewrating;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,11 +22,14 @@ import in.codekamp.reviewrating.services.DatabaseHelper;
 public class MailchimpConnectActivity extends AppCompatActivity {
 
     EditText apiKeyField;
+    NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mailchimp_connect);
+
+        notificationManager = (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
 
         apiKeyField = (EditText) findViewById(R.id.api_key_field);
 
@@ -77,7 +85,57 @@ public class MailchimpConnectActivity extends AppCompatActivity {
 
     }
 
-    @Subscribe void updateConversation(NewMessageEvent e) {
+    @Subscribe
+    void updateConversation(NewMessageEvent e) {
 
+    }
+
+    public void sendNotification(View v) {
+        Notification.Builder builder = new Notification.Builder(this);
+
+        builder.setContentTitle("Video is downloading...");
+        builder.setContentText("The video download is blah blah blah...");
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
+        builder.setContentIntent(pendingIntent);
+        builder.setAutoCancel(true);
+        builder.setOngoing(true);
+        builder.setProgress(0, 0, true);
+
+        Notification.Action acrhieveAction = new Notification.Action(R.drawable.master, "archieve it", pendingIntent);
+        Notification.Action replyAction = new Notification.Action(R.drawable.master, "reply", pendingIntent);
+
+        builder.addAction(acrhieveAction);
+        builder.addAction(replyAction);
+
+
+        Notification notification = builder.build();
+        notificationManager.notify(1, notification);
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i <= 10; i++) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            builder.setProgress(100, i * 10, false);
+            notification = builder.build();
+            notificationManager.notify(1, notification);
+        }
+
+        builder.setContentTitle("Video downloaded Successfully");
+        builder.setOngoing(false);
+        builder.setProgress(0, 0, false);
+        notification = builder.build();
+        notificationManager.notify(1, notification);
     }
 }
