@@ -3,6 +3,7 @@
     package="in.codekamp.reviewrating">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".MyApplication"
@@ -11,8 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".activities.SplashScreen"
             android:noHistory="true"
@@ -23,8 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MailchimpConnectActivity" />
 
-        <activity android:name=".MailchimpConnectActivity"></activity>
+        <service
+            android:name=".services.BackupService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
