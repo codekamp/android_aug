@@ -22,16 +22,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import in.codekamp.reviewrating.services.BackupService;
 import in.codekamp.reviewrating.services.DatabaseHelper;
 
-public class MailchimpConnectActivity extends AppCompatActivity implements LocationListener {
+public class MailchimpConnectActivity extends AppCompatActivity implements LocationListener, ValueEventListener {
 
     EditText apiKeyField;
     NotificationManager notificationManager;
+    DatabaseReference fbDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,10 @@ public class MailchimpConnectActivity extends AppCompatActivity implements Locat
         apiKeyField = (EditText) findViewById(R.id.api_key_field);
 
         EventBus.getDefault().register(this);
+
+        fbDb = FirebaseDatabase.getInstance().getReference();
+
+        fbDb.child("messages").addValueEventListener(this);
     }
 
     public void connect(View view) {
@@ -242,6 +256,31 @@ public class MailchimpConnectActivity extends AppCompatActivity implements Locat
             return;
         }
         locationManager.removeUpdates(this);
+
+    }
+
+
+    public void addTodo(View view) {
+        Message m = new Message("Hi there!",
+                "qwerty",
+                "abcdef");
+
+        fbDb.child("messages").push().setValue(m);
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+
+        Log.d("codekamp", "onDataChange called");
+
+        for(DataSnapshot child: dataSnapshot.getChildren()) {
+            Log.d("codekamp", child.child("title").getValue().toString());
+        }
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
 
     }
 }

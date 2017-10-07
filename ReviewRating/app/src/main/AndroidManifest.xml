@@ -29,6 +29,12 @@
             android:name=".services.BackupService"
             android:enabled="true"
             android:exported="true"></service>
+
+        <receiver android:name=".AirplaneModeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
