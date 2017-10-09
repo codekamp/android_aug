@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="in.codekamp.mydatabindingdemo.MainActivity">
+
+    <data>
+        <variable
+            name="profile"
+            type="in.codekamp.mydatabindingdemo.User" />
+
+        <variable
+            name="editingEnabled"
+            type="boolean" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/first_name"
+            android:enabled="@{editingEnabled}"
+            android:text="@{profile.firstName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:enabled="@{editingEnabled}"
+            android:text="@{profile.lastName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:enabled="@{editingEnabled}"
+            android:text="@{profile.aboutMe}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:onClick="save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
