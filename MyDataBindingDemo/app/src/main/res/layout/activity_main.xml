@@ -9,10 +9,6 @@
             name="profile"
             type="in.codekamp.mydatabindingdemo.User" />
 
-        <variable
-            name="editingEnabled"
-            type="boolean" />
-
     </data>
 
     <LinearLayout
@@ -22,20 +18,17 @@
 
         <EditText
             android:id="@+id/first_name"
-            android:enabled="@{editingEnabled}"
-            android:text="@{profile.firstName}"
+            android:text="@={profile.firstName}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:text="@={profile.lastName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:enabled="@{editingEnabled}"
-            android:text="@{profile.lastName}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:enabled="@{editingEnabled}"
-            android:text="@{profile.aboutMe}"
+            android:text="@={profile.aboutMe}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
